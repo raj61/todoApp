@@ -1,12 +1,31 @@
-﻿<div class="col-md-6 col-md-offset-3">
+﻿    
+    <div class="row">
     <h1>Hi {{currentUser.firstName}}!</h1>
     <p>You're logged in with the MEAN Stack & Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="deleteUser(user._id)">Delete</a>
-        </li>
-    </ul>
+    <div class="col-md-12">
+            <input  [(ngModel)]="t" (keyup.enter)="saveTodo()"  class="form-control" id="todo" type="text" placeholder="To do's ">
+            
+    </div>
+    </div>
+    <div class="row">
+            <div class="col-md-6">
+                    <h3> My Todos </h3>
+                    <div *ngIf="!myTodos.length"> Currently no Todo. Add new</div>
+                    <div *ngFor="let t of myTodos">
+                            <todo [todo]='t' (onTodoDeleted)="todoWasDeleted($event)" > </todo>
+                            </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h3> Other users Todos </h3>
+                    <div *ngIf="!otherTodos.length"> Currently no Todo.</div>
+                    <div *ngFor="let t of otherTodos">
+                            <todo [todo]='t' [showAuthor]="true" (onTodoDeleted)="todoWasDeleted($event)" > </todo>
+                            </div>
+                </div>
+    </div>
+    
+    <footer style="bottom:0;">
+ 
     <p><a [routerLink]="['/login']">Logout</a></p>
-</div>
+    </footer>

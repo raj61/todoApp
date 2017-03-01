@@ -1,0 +1,8 @@
+<div class="col-md-sm-4 todoBox">
+    <div *ngIf="!showAuthor" class="close" (click)="delete()">X</div>
+    <div *ngIf="showAuthor" class="author pull-right" style="padding:5%;"> by {{todo.username}}</div>
+    <div class="text"> {{todo.text}}</div>
+    
+    
+    </div>
+

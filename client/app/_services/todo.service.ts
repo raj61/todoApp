@@ -1,28 +1,28 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { AppConfig } from '../app.config';
-import { User } from '../_models/index';
+import { Todo } from '../_models/index';
 
 @Injectable()
-export class UserService {
+export class TodoService {
     constructor(private http: Http, private config: AppConfig) { }
 
     getAll() {
-        return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
-    }
-
-    getById(_id: string) {
-        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
-    }
-
-    create(user: User) {
-        return this.http.post(this.config.apiUrl + '/users/register', user, this.jwt());
+        return this.http.get(this.config.apiUrl + '/todos', this.jwt()).map((response: Response) => response.json());
     }
 
     
 
+    create(todo: Todo) {
+        return this.http.post(this.config.apiUrl + '/todos/register', todo, this.jwt());
+    }
+
    
+
+    delete(_id: string) {
+        return this.http.delete(this.config.apiUrl + '/todos/' + _id, this.jwt());
+    }
 
     // private helper methods
 
